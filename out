@@ -33,6 +33,13 @@ text_file=$(evaluate "$(jq -r '.params.text_file // ""' < "${payload}")")
 
 text=$(evaluate "$(jq -r '.params.text // "${TEXT_FILE_CONTENT}"' < "${payload}")")
 
+echo $text
+echo $text_file
+
+ls -la
+cd message
+ls -la
+
 export TEXT_FILE_CONTENT=""
 [[ -n "${text_file}" && ! -f "${text_file}" ]] && text_file=""
 [[ -n "${text_file}" && -f "${text_file}" ]] && TEXT_FILE_CONTENT="$(cat "${text_file}")"
