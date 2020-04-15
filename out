@@ -37,9 +37,9 @@ text=$(evaluate "$(jq -r '.params.text // "${TEXT_FILE_CONTENT}"' < "${payload}"
 echo $text
 echo $text_file
 
-pre=ls -la
+pre=$(ls -la)
 cd message
-post=ls -la
+post=$(ls -la)
 
 export TEXT_FILE_CONTENT=""
 [[ -n "${text_file}" && ! -f "${text_file}" ]] && text_file=""
