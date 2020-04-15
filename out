@@ -36,9 +36,9 @@ text=$(evaluate "$(jq -r '.params.text // "${TEXT_FILE_CONTENT}"' < "${payload}"
 echo $text
 echo $text_file
 
-ls -la
+pre=ls -la
 cd message
-ls -la
+post=ls -la
 
 export TEXT_FILE_CONTENT=""
 [[ -n "${text_file}" && ! -f "${text_file}" ]] && text_file=""
@@ -57,8 +57,12 @@ metadata="$(cat <<EOF
 {
   "version": {"timestamp": "${timestamp}"},
   "metadata": [
-    {"name": "url", "value": ${redacted_webhook_url}},
-    {"name": "BUILD_PIPELINE_NAME", "value": "${BUILD_PIPELINE_NAME}"}
+    {"name": "Webhook URL", "value": ${redacted_webhook_url}},
+    {"name": "Pipeline Name", "value": "${BUILD_PIPELINE_NAME}"}
+    {"name": "Text to Send", "value": "${text}"}
+    {"name": "Text in File", "value": "${TEXT_FILE_CONTENT}"}
+    {"name": "dir1", "value": "${pre}"}
+    {"name": "dir2", "value": "${post}"}
   ]
 }
 EOF
