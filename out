@@ -21,7 +21,7 @@ function evaluate {
 payload=$(mktemp /tmp/resource-in.XXXXXX)
 cat > "${payload}" <&0
 
-format="markdown"
+format="plain"
 color="$(jq -r '.params.color // "00EA43"' < "${payload}")"
 
 actionName=$(evaluate "$(jq -r '.params.actionName // "Open Concourse"' < "${payload}")")
@@ -49,7 +49,7 @@ metadata="$(cat <<EOF
   "metadata": [
     {"name": "Webhook URL", "value": ${redacted_webhook_url}},
     {"name": "Pipeline Name", "value": "${BUILD_PIPELINE_NAME}"},
-    {"name": "Text to Send", "value": "${text}"}
+    {"name": "Text to Send", "value": $(echo -n "$text")}
   ]
 }
 EOF
