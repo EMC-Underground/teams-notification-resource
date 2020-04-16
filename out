@@ -48,7 +48,7 @@ metadata="$(cat <<EOF
   "version": {"timestamp": "${timestamp}"},
   "metadata": [
     {"name": "Webhook URL", "value": ${redacted_webhook_url}},
-    {"name": "Pipeline Name", "value": "${BUILD_PIPELINE_NAME}"},
+    {"name": "Pipeline Name", "value": "${BUILD_PIPELINE_NAME}"}
   ]
 }
 EOF
