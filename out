@@ -49,7 +49,7 @@ metadata="$(cat <<EOF
   "metadata": [
     {"name": "Webhook URL", "value": ${redacted_webhook_url}},
     {"name": "Pipeline Name", "value": "${BUILD_PIPELINE_NAME}"},
-    {"name": "Text to Send", "value": $(echo -n "$text")}
+    {"name": "Text to Send", "value": "$(echo -n "$text")"}
   ]
 }
 EOF
